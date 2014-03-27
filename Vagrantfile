@@ -16,11 +16,21 @@ module VagrantPlugins
         class Plugin < Vagrant.plugin(2)
             name 'vagrant-pm2'
             description ''
-            command :appstart do Start end
-            command :apprestart do Restart end
-            command :appstop do Stop end
-            command :applist do List end
-            command :applog do Log end
+            command :app do
+                argv = ARGV[1..-1]
+                case argv[0]
+                    when 'start'
+                        Start
+                    when 'restart'
+                        Restart
+                    when 'stop'
+                        Stop
+                    when 'list'
+                        List
+                    when 'log'
+                        Log
+                end
+            end
         end
 
         class Start < Vagrant.plugin(2, :command)

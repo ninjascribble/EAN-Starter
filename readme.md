@@ -38,8 +38,8 @@ sudo npm install -g pm2
 
 For convenience, some of the pm2 commands can be executed through Vagrant directly:
 
-**vagrant appstart:** Starts the app on all available processors  
-**vagrant appstop:** Stops all running instances of the app  
-**vagrant apprestart:** Restarts all running instances of the app  
-**vagrant applist:** Lists the apps that are currently running  
-**vagrant applog:** Display a live log of all the apps that are currently running  
+**vagrant app start:** Starts the app on all available processors  
+**vagrant app stop:** Stops all running instances of the app  
+**vagrant app restart:** Restarts all running instances of the app  
+**vagrant app list:** Lists the apps that are currently running  
+**vagrant app log:** Display a live log of all the apps that are currently running  
