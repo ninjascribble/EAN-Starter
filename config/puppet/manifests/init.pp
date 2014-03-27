@@ -8,7 +8,8 @@ package { [
     'vim',
     'g++',
     'make'
-    ]: ensure => installed,
+    ]:
+    ensure => installed,
     require => Exec['apt-get_update']
 }
 
@@ -17,14 +18,30 @@ class { 'nodejs':
     require => Exec['apt-get_update']
 }
 
-package { 'express':
-  ensure => present,
-  provider => 'npm',
-  require => Class['nodejs']
+package { [
+    'pm2',
+    'express'
+    ]:
+    ensure => present,
+    provider => 'npm',
+    require => [
+        Class['nodejs'],
+        Package['make']
+    ]
 }
 
-package { 'pm2':
-  ensure => present,
-  provider => 'npm',
-  require => [Package['make'], Class['nodejs']]
+exec { 'install_app_dependencies':
+    command => 'npm install',
+    path => '/usr/bin',
+    cwd => '/var/src/app',
+    require => Class['nodejs']
+}
+
+exec { 'auto_start_app':
+    command => 'pm2 start /var/src/app/app.js -i max',
+    path => '/usr/bin',
+    require => [
+        Exec['install_app_dependencies'],
+        Package['pm2']
+    ]
 }
