@@ -22,3 +22,24 @@ the express package globally:
 ```
 sudo npm install -g express
 ```
+
+### PM2
+
+PM2 is a Node app-runner that keeps track of processes and logs, and auto-restarts your node app
+when it runs into a fatal error.
+
+http://devo.ps/blog/2013/06/26/goodbye-node-forever-hello-pm2.html
+
+```
+sudo npm install -g pm2
+```
+
+#### Vagrant Commands
+
+For convenience, some of the pm2 commands can be executed through Vagrant directly:
+
+**vagrant appstart:** Starts the app on all available processors
+**vagrant appstop:** Stops all running instances of the app
+**vagrant apprestart:** Restarts all running instances of the app
+**vagrant applist:** Lists the apps that are currently running
+**vagrant applog:** Display a live log of all the apps that are currently running
