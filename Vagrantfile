@@ -52,7 +52,7 @@ module VagrantPlugins
 
         class Restart < Vagrant.plugin(2, :command)
           def execute
-            command = 'pm2 restart all'
+            command = 'pm2 gracefulReload all'
             with_target_vms(nil, :single_target => true) do |vm|
               vm.action(:ssh_run, :ssh_run_command => command)
               return 0
